@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<div class="recipes-index home">
+  {% if page.title %}
+    <h1 class="page-heading">{{ page.title | escape }}</h1>
+  {% endif %}
+  {% assign intro = content | strip %}
+  {% if intro != "" %}
+    <div class="home-intro prose">{{ content }}</div>
+  {% endif %}
+  <h2 class="post-list-heading">All recipes</h2>
+  <ul class="post-list recipe-list" role="list">
+    {% assign sorted = site.recipes | sort: "title" %}
+    {% for recipe in sorted %}
+      <li>
+        <h3 class="post-list-title"><a href="{{ recipe.url | relative_url }}">{{ recipe.title | escape }}</a></h3>
+        {% if recipe.subtitle %}
+          <p class="recipe-list-blurb">{{ recipe.subtitle | escape }}</p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
