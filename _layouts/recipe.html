@@ -1,0 +1,52 @@
+---
+layout: default
+---
+<article class="recipe h-entry">
+  <header class="recipe-header post-header">
+    <h1 class="recipe-title post-title p-name">{{ page.title | escape }}</h1>
+    {% if page.subtitle %}
+      <p class="recipe-subtitle">{{ page.subtitle | escape }}</p>
+    {% endif %}
+    <dl class="recipe-meta" role="list">
+      {% if page.prep_minutes %}
+        <div class="recipe-meta-item">
+          <dt>Prep</dt>
+          <dd>{{ page.prep_minutes }} min</dd>
+        </div>
+      {% endif %}
+      {% if page.cook_minutes %}
+        <div class="recipe-meta-item">
+          <dt>Cook</dt>
+          <dd>{{ page.cook_minutes }} min</dd>
+        </div>
+      {% endif %}
+      {% if page.yields %}
+        <div class="recipe-meta-item">
+          <dt>Yields</dt>
+          <dd>{{ page.yields | escape }}</dd>
+        </div>
+      {% endif %}
+      {% if page.tags.size > 0 %}
+        <div class="recipe-meta-item recipe-meta-tags">
+          <dt>Tags</dt>
+          <dd>{{ page.tags | join: ", " }}</dd>
+        </div>
+      {% endif %}
+    </dl>
+  </header>
+
+  {% if page.ingredients.size > 0 %}
+    <section class="recipe-ingredients" aria-labelledby="recipe-ingredients-heading">
+      <h2 id="recipe-ingredients-heading" class="recipe-section-title">Ingredients</h2>
+      <ul class="recipe-ingredient-list">
+        {% for item in page.ingredients %}
+          <li>{{ item | markdownify }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  <div class="recipe-body prose e-content">
+    {{ content }}
+  </div>
+</article>

@@ -1,0 +1,8 @@
+<footer class="site-footer">
+  <div class="wrapper site-footer-inner">
+    <span class="footer-text">© {{ site.time | date: "%Y" }} {{ site.title | escape }}</span>
+    {% if site.github_username %}
+      <a class="footer-link" href="https://github.com/{{ site.github_username }}">GitHub</a>
+    {% endif %}
+  </div>
+</footer>
