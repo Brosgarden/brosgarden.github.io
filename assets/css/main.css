@@ -280,6 +280,21 @@ a:hover {
   color: var(--text-muted);
 }
 
+.recipe-list-meta {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.home-more {
+  margin: 0 0 calc(var(--space) * 1.5);
+  font-size: 0.95rem;
+}
+
+.home-section-heading {
+  margin-top: calc(var(--space) * 1.5);
+}
+
 /* Prose (markdown) */
 .prose > *:first-child {
   margin-top: 0;

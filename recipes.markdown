@@ -1,7 +1,7 @@
 ---
 layout: recipes
-title: Cooking
+title: Recipes
 permalink: /recipes/
 ---
 
-I like these recipes.
+Recipes with weights, temperatures, and notes from cooking them at home.

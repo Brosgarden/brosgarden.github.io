@@ -9,13 +9,39 @@ layout: default
   {% if home_intro != "" %}
     <div class="home-intro prose">{{ content }}</div>
   {% endif %}
-  <h2 class="post-list-heading">Posts</h2>
-  <ul class="post-list" role="list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%d %b %Y" }}</span>
-        <h3 class="post-list-title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
-      </li>
-    {% endfor %}
-  </ul>
+
+  {% if site.recipes.size > 0 %}
+    <h2 class="post-list-heading">Recipes</h2>
+    <ul class="post-list recipe-list" role="list">
+      {% assign sorted_recipes = site.recipes | sort: "title" %}
+      {% for recipe in sorted_recipes %}
+        <li>
+          <h3 class="post-list-title"><a href="{{ recipe.url | relative_url }}">{{ recipe.title | escape }}</a></h3>
+          {% if recipe.subtitle %}
+            <p class="recipe-list-blurb">{{ recipe.subtitle | escape }}</p>
+          {% endif %}
+          {% if recipe.yields or recipe.tags.size > 0 %}
+            <p class="recipe-list-meta">
+              {% if recipe.yields %}{{ recipe.yields | escape }}{% endif %}
+              {% if recipe.yields and recipe.tags.size > 0 %} · {% endif %}
+              {% if recipe.tags.size > 0 %}{{ recipe.tags | join: ", " }}{% endif %}
+            </p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    <p class="home-more"><a href="{{ "/recipes/" | relative_url }}">All recipes →</a></p>
+  {% endif %}
+
+  {% if site.posts.size > 0 %}
+    <h2 class="post-list-heading home-section-heading">Notes</h2>
+    <ul class="post-list" role="list">
+      {% for post in site.posts limit: 3 %}
+        <li>
+          <span class="post-meta">{{ post.date | date: "%d %b %Y" }}</span>
+          <h3 class="post-list-title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 </div>
